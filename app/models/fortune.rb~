@@ -1,0 +1,6 @@
+class Fortune < ActiveRecord::Base
+	validates :quotation, :presence => true
+	validates :source,    :presence => true
+	
+	has_many :comments, :dependent => :destroy
+end

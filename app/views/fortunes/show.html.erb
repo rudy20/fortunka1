@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Cytat:</b>
+  <%= @fortune.quotation %>
+</p>
+
+<p>
+  <b>Źródło:</b>
+  <%= @fortune.source %>
+</p>
+
+<p>
+  <b>Tags:</b>
+  <%= @fortune.tags.map { |t| t.name }.join(", ") %>
+</p>
+
+<h2>Komentarze:</h2>
+<% @fortune.comments.each do |comment| %>
+  <p>
+    <b>Osoba:</b>
+    <%= comment.commenter %>
+  </p>
+  <p>
+    <b>Komentarz:</b>
+    <%= comment.body %>
+  </p>
+  <p>
+  <%= link_to 'Usuń komentarz', [comment.fortune, comment],
+               :confirm => 'Are you sure?',
+               :method => :delete %>
+</p>
+<% end %>
+
+<h2>Dodaj komentarz:</h2>
+<%= form_for([@fortune, @fortune.comments.build]) do |f| %>
+  <div class="field">
+    <%= f.label :commenter %><br />
+    <%= f.text_field :commenter %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Edit', edit_fortune_path(@fortune) %> |
+<%= link_to 'Back', fortunes_path %>

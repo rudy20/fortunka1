@@ -1,0 +1,26 @@
+<h1>Fortunka</h1>
+
+<table>
+  <tr>
+    <th>Cytaty</th>
+    <th>Źródło</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @fortunes.each do |fortune| %>
+  <tr>
+    <td><%= fortune.quotation %></td>
+    <td><%= fortune.source %></td>
+    <td><%= link_to 'Wyświetl', fortune %></td>
+    <td><%= link_to 'Edytuj', edit_fortune_path(fortune) %></td>
+    <td><%= link_to 'Usuń', fortune, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nowa Fortunka', new_fortune_path %>
+<%= paginate @fortunes %>

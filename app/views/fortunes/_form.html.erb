@@ -1,0 +1,29 @@
+<% @fortune.tags.build %>
+<%= form_for(@fortune) do |fortune_form| %>
+  <% if @fortune.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@fortune.errors.count, "error") %> prohibited this fortune from being saved:</h2>
+
+      <ul>
+      <% @fortune.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= fortune_form.label :quotation %><br />
+    <%= fortune_form.text_area :quotation %>
+  </div>
+  <div class="field">
+    <%= fortune_form.label :source %><br />
+    <%= fortune_form.text_field :source %>
+  </div>
+  <h2>Tags</h2>
+  <%= render :partial => 'tags/form',
+             :locals => {:form => fortune_form} %>
+  <div class="actions">
+    <%= fortune_form.submit %>
+  </div>
+<% end %>
