@@ -23,4 +23,4 @@
 <br />
 
 <%= link_to 'Nowa Fortunka', new_fortune_path %>
-<%= paginate @fortunes %>
+
